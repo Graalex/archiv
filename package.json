@@ -1,0 +1,11 @@
+{
+  "name": "archiv",
+  "version": "0.1.0",
+  "description": "Электронный архив исполнительной документации на архитектуре микросервисов",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Grigorchuk Aleksandr",
+  "license": "MIT"
+}
