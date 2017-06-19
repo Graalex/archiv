@@ -1,0 +1,32 @@
+/**
+ * RegionType - представляет область
+ */
+
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
+const DistrictType = require('./district');
+const LocalityType = require('./locality');
+
+const RegionType = new GraphQLObjectType({
+	name: 'Region',
+	description: 'Административная единица - область',
+	fields: () => ({
+		key: {
+			type: new GraphQLNonNull(GraphQLID),
+			description: 'Уникальный идентификатор'
+		},
+		name: {
+			type: new GraphQLNonNull(GraphQLString),
+			description: 'Название области'
+		},
+		districts: {
+			type: new GraphQLList(DistrictType),
+			description: 'Список областных районов'
+		},
+		localities: {
+			type: new GraphQLList(LocalityType),
+			description: 'Список населенных пунктов областного подчинения'
+		}
+	})
+});
+
+module.exports = RegionType;

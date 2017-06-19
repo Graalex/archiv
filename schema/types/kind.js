@@ -19,4 +19,4 @@ const KindType = new GraphQLObjectType({
 	})
 });
 
-module.exports = { KindType };
+module.exports = KindType;
