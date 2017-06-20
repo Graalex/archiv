@@ -1,22 +1,23 @@
 /**
- * Типы данных для запросов GraphQL
+ * Определение GraphQL типов для почтовых адресов
  */
 
-const KindType = require('./kind');
 const RegionType = require('./region');
 const DistrictType = require('./district');
 const LocalityType = require('./locality');
 const AreaType = require('./area');
 const StreetType = require('./street');
 const AddressType = require('./address');
-
+const LocalityKindType = require('./locality-kind');
+const StreetKindType = require('./street-kind');
 
 module.exports = {
-	KindType,
 	RegionType,
 	DistrictType,
 	LocalityType,
 	AreaType,
 	StreetType,
-	AddressType
+	AddressType,
+	LocalityKindType,
+	StreetKindType
 };

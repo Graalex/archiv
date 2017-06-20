@@ -7,6 +7,7 @@ const AreaType = require('./area');
 const StreetType = require('./street');
 const DistrictType = require('./district');
 const RegionType = require('./region');
+const LocalityKindType = require('./locality-kind');
 
 const LocalityType = new GraphQLObjectType({
 	name: 'Locality',
@@ -15,6 +16,10 @@ const LocalityType = new GraphQLObjectType({
 		key: {
 			type: new GraphQLNonNull(GraphQLID),
 			description: 'Уникальный идентификатор'
+		},
+		kind: {
+			type: LocalityKindType,
+			description: 'Тип населеного пункта'
 		},
 		name: {
 			type: new GraphQLNonNull(GraphQLString),

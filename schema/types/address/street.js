@@ -5,6 +5,7 @@
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
 const AddressType = require('./address');
 const LocalityType = require('./locality');
+const StreetKindType = require('./street-kind');
 
 const StreetType = new GraphQLObjectType({
 	name: 'Street',
@@ -13,6 +14,10 @@ const StreetType = new GraphQLObjectType({
 		key: {
 			type: new GraphQLNonNull(GraphQLID),
 			description: 'Уникальный идентификатор'
+		},
+		kind: {
+			type: StreetKindType,
+			description: 'Тип улицы'
 		},
 		name: {
 			type: new GraphQLNonNull(GraphQLString),
