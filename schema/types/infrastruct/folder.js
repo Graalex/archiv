@@ -3,7 +3,7 @@
  */
 
 const { GraphQLID, GraphQLString, GraphQLNonNull, GraphQLObjectType, GraphQLList } = require('graphql');
-const ImageType = require('image');
+const ImageType = require('./image');
 
 const FolderType = new GraphQLObjectType({
 	name: 'Folder',
