@@ -5,20 +5,31 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-		"lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint .",
+    "common": "node services/infrastruct/common/index.js"
   },
-  "author": "Grigorchuk Aleksandr",
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/Graalex/archiv.git"
+	},
+	"author": "Grigorchuk Aleksandr",
   "license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Graalex/archiv/issues"
+	},
+	"homepage": "https://github.com/Graalex/archiv#readme",
   "dependencies": {
+    "cote": "^0.14.1",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
-    "graphql": "^0.10.1"
+    "graphql": "^0.10.1",
+    "mssql": "^4.0.4"
   },
   "devDependencies": {
     "eslint": "^4.0.0",
     "eslint-plugin-node": "^5.0.0"
   },
-	"engines": {
-		"node": ">=8.0.0"
-	}
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }

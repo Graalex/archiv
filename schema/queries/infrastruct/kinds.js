@@ -4,6 +4,7 @@
 
 const { GraphQLInt, GraphQLNonNull, GraphQLList } = require('graphql');
 const { KindDocType } = require('../../types/infrastruct/index');
+const { commonRequester } = require('./client');
 
 module.exports = {
 	type: new GraphQLList(KindDocType),
@@ -15,19 +16,5 @@ module.exports = {
 			description: 'Ключ класса документа'
 		}
 	},
-	resolve: (obj, args) => {
-		switch (args.key) {
-			case 1:
-				return [{key: 1, name: 'Список для класса 1'}];
-				break;
-
-			case 2:
-				return [{key: 2, name: 'Список для класса 2'}];
-				break;
-
-			default:
-				return [];
-				break;
-		}
-	}
+	resolve: (obj, args) => commonRequester.send({type: 'kinds', key: args.key}).then(data => data)
 };
