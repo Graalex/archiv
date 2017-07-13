@@ -5,20 +5,27 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-		"lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint .",
+		"schedule": "node ./services/infrastruct/gasolina-archiv/index.js"
   },
   "author": "Grigorchuk Aleksandr",
   "license": "MIT",
   "dependencies": {
+    "cote": "^0.14.1",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
-    "graphql": "^0.10.1"
+    "graphql": "^0.10.1",
+    "mssql": "^4.0.4",
+    "node-firebird": "^0.8.2",
+    "node-schedule": "^1.2.3",
+    "tracer": "^0.8.9",
+    "windows-1251": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^4.0.0",
     "eslint-plugin-node": "^5.0.0"
   },
-	"engines": {
-		"node": ">=8.0.0"
-	}
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }
