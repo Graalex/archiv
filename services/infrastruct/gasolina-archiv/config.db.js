@@ -28,7 +28,11 @@ const globus = {
 	}
 };
 
+// строка планирования задания (каждый день в 22:00)
+const jobSchedule = '0 22 * * *';
+
 module.exports = {
 	gasolina,
-	globus
+	globus,
+	jobSchedule
 };

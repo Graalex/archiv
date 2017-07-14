@@ -9,13 +9,13 @@
 const logger =require('tracer')
 	.dailyfile({
 		root:'./services/infrastruct/gasolina-archiv/logs',
-		maxLogFiles: 30,
-		allLogsFileName: 'upgrade-abonents'
+		maxLogFiles: 30
 	});
 const scheduler = require('node-schedule');
 const {getAbonents, upgradeAbonets } = require('./db');
+const { jobSchedule } = require('./config.db');
 
-const job = scheduler.scheduleJob('* 18 * * *', () => {
+scheduler.scheduleJob(jobSchedule, () => {
 	logger.info('Начало выполнения задания gasolina-archiv');
 	logger.info('Начат импорт даных из Gasolina.');
 

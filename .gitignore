@@ -1,4 +1,4 @@
 .idea
 node_modules
 package-lock.json
-/services/infrastruct/gasolina-archiv/logs
+/services/infrastruct/gasolina-archiv/logs/*.log
