@@ -32,14 +32,17 @@ const getAbonents = () => {
 		// соединение с базой данных
 		fb.attach(gasolina, (err, db) => {
 			if (err) {
+				console.log('ERR:');
+				console.dir(err);
 				reject(err);
+				return;
 			}
 
 			// выполняем запрос
 			db.query(query, (err, result) => {
 				if (err) {
-					db.detach();
 					reject(err);
+					return;
 				}
 
 				// если результат не пустой массив
@@ -98,12 +101,10 @@ const upgradeAbonets = abons => {
 	table.columns.add('apt_lit', mssql.NVarChar(50), {nullable: true});
 
 	return new Promise((resolve, reject) => {
-		mssql.connect(globus)
-			.then(() => {
-				// очищаем таблицу от предыдущих данных
-				return new mssql.Request().query('truncate table GSL_ABONETS');
-			})
-			.then(() => {
+		mssql.connect(globus).then(() => {
+			// очищаем таблицу от предыдущих данных
+			return new mssql.Request().query('truncate table GSL_ABONETS');
+		}).then(() => {
 
 			// заполняем временную таблицк данными
 			abons.forEach(item => {
@@ -123,17 +124,15 @@ const upgradeAbonets = abons => {
 						item.apartment,
 						item.apart_lit
 					);
-				});
-
-				// экспортируем в таблицу базы данных
-				return new mssql.Request().bulk(table);
-			})
-			.then(() => {
-				resolve();
-			})
-			.catch(err => {
-				reject(err);
 			});
+
+			// экспортируем в таблицу базы данных
+			return new mssql.Request().bulk(table);
+		}).then(() => {
+			resolve();
+		}).catch(err => {
+			reject(err);
+		});
 
 		mssql.on('error', err => {
 			reject(err);
