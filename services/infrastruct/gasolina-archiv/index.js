@@ -15,24 +15,18 @@ const scheduler = require('node-schedule');
 const {getAbonents, upgradeAbonets } = require('./db');
 const { jobSchedule } = require('./config.db');
 
+logger.info('Start micro service "gasolina-archiv".');
+
 scheduler.scheduleJob(jobSchedule, () => {
-	logger.info('Начало выполнения задания gasolina-archiv');
-	logger.info('Начат импорт даных из Gasolina.');
+	logger.info('Start job "gasolina-archiv"');
+	logger.info('Start import data from Gasolina.');
 
-	getAbonents()
-		.then(data => {
-			logger.info('Закончен импорт даных из Gasolina.');
-			logger.info('Начат экспорт даных в Globus.');
+	getAbonents().then(data => {
+			logger.info('End import data from Gasolina.');
+			logger.info('Start export data to Globus.');
 
-			upgradeAbonets(data)
-				.then(() => {
-					logger.info('Закончен экспорт даных в Globus.');
-				})
-				.catch(err => {
-					logger.error('Ошибка экспорта данных в Globus.', err);
-				});
-		})
-		.catch(err => {
-			logger.error('Ошибка импорта данных из Gasolina.', err);
-		});
+			return upgradeAbonets(data);
+	})
+		.then(() => logger.info('End export data to Globus.'))
+		.catch(err => logger.error('Error import/export data in job "gasolina-archiv".', err));
 });

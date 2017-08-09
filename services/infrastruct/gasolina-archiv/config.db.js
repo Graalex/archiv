@@ -8,7 +8,7 @@
 const gasolina = {
 	host: '192.168.0.211',
 	port: 3050,
-	database: 'D:/DATA/MARIUPOL.FDB',
+	database: 'E:/DATA/MARIUPOL.FDB',
 	user: 'SYSDBA',
 	password: 'masterkey'
 };
@@ -21,6 +21,7 @@ const globus = {
 	password: 'ARCHIV_APP',
 	server: '192.168.0.168',
 	database: 'Globus',
+	connectionTimeout: 40000,
 	pool: {
 		max: 10,
 		min: 0,
